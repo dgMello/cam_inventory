@@ -1,0 +1,10 @@
+<h2>Switches</h2>
+{% if switch_list %}
+    <ul>
+    {% for switch in switch_list %}
+        <li>{{ switch.path }} <a href="/inventory/switches/{{ switch.id }}/">Details</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No switches are available.</p>
+{% endif %}

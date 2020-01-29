@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import get_object_or_404, render
 
 from django.http import HttpResponse
 
@@ -18,24 +18,39 @@ def index(request):
 
 
 def cameras(request):
-    return HttpResponse("You're looking at the list of cameras.")
+    camera_list = Camera.objects.all()
+    context = {
+        'camera_list': camera_list
+    }
+    return render(request, 'inventory/cameras.html', context)
 
 
 def camera_detail(request, camera_id):
-    return HttpResponse("You're looking at camera %s." % camera_id)
+    camera = get_object_or_404(Camera, pk=camera_id)
+    return render(request, 'inventory/camera_detail.html', {'camera': camera})
 
 
 def servers(request):
-    return HttpResponse("You're looking at the list of servers.")
+    server_list = Server.objects.all()
+    context = {
+        'server_list': server_list
+    }
+    return render(request, 'inventory/servers.html', context)
 
 
 def server_detail(request, server_id):
-    return HttpResponse("You're looking at server %s." % server_id)
+    server = get_object_or_404(Server, pk=server_id)
+    return render(request, 'inventory/server_detail.html', {'server': server})
 
 
 def switches(request):
-    return HttpResponse("You're looking at the list of switches.")
+    switch_list = Switch.objects.all()
+    context = {
+        'switch_list': switch_list
+    }
+    return render(request, 'inventory/switches.html', context)
 
 
 def switch_detail(request, switch_id):
-    return HttpResponse("You're looking at switch %s." % switch_id)
+    switch = get_object_or_404(Switch, pk=switch_id)
+    return render(request, 'inventory/switch_detail.html', {'switch': switch})

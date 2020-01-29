@@ -1,0 +1,10 @@
+<h2>Cameras</h2>
+{% if camera_list %}
+    <ul>
+    {% for camera in camera_list %}
+        <li>{{ camera.make }} {{ camera.model }} {{ camera.ip_address }} <a href="/inventory/cameras/{{ camera.id }}/">Details</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No cameras are available.</p>
+{% endif %}
