@@ -54,3 +54,7 @@ def switches(request):
 def switch_detail(request, switch_id):
     switch = get_object_or_404(Switch, pk=switch_id)
     return render(request, 'inventory/switch_detail.html', {'switch': switch})
+
+
+def new_device(request, device=None):
+    return render(request, 'inventory/new_device.html')

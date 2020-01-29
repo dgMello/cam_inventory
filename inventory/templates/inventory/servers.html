@@ -2,7 +2,7 @@
 {% if server_list %}
     <ul>
     {% for server in server_list %}
-        <li>{{ server.model }} {{ server.ip_address }} <a href="/inventory/servers/{{ server.id }}/">Details</a></li>
+        <li>{{ server.name }} <a href="/inventory/servers/{{ server.id }}/">Details</a></li>
     {% endfor %}
     </ul>
 {% else %}

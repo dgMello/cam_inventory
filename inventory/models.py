@@ -2,12 +2,14 @@ from django.db import models
 
 
 class Server(models.Model):
-    model = models.CharField(max_length=200)
-    ip_address = models.CharField(max_length=200)
+    name = models.CharField(max_length=50)
+    model = models.CharField(max_length=50)
+    ip_address = models.CharField(max_length=50)
+    sw_version = models.CharField('Software version', max_length=200)
 
 
 class Switch(models.Model):
-    path = models.CharField(max_length=200)
+    path = models.CharField(max_length=50)
 
 
 class Camera(models.Model):

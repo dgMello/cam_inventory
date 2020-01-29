@@ -1,0 +1,10 @@
+<h1>Create new device</h1>
+
+<form action="{% url 'new_device' %}" method="post">
+    {% csrf_token %}
+    <select name="devices">
+        <option value="server">Server</option>
+        <option value="switch">Switch</option>
+        <option value="camera">Camera</option>
+    </select>
+</form>
