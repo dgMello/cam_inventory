@@ -2,9 +2,19 @@ from django.shortcuts import render
 
 from django.http import HttpResponse
 
+from .models import Server, Switch, Camera
+
 
 def index(request):
-    return HttpResponse("Hello, world. You're at the inventory index.")
+    server_list = Server.objects.all()
+    switch_list = Switch.objects.all()
+    camera_list = Camera.objects.all()
+    context = {
+        'server_list': server_list,
+        'switch_list': switch_list,
+        'camera_list': camera_list
+    }
+    return render(request, 'inventory/index.html', context)
 
 
 def cameras(request):

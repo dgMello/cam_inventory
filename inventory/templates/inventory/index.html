@@ -1,0 +1,32 @@
+<h2>Servers</h2>
+{% if server_list %}
+    <ul>
+    {% for server in server_list %}
+        <li><a href="/inventory/{{ server.id }}/">{{ server.model }} {{ server.ip_address }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No servers are available.</p>
+{% endif %}
+
+<h2>Switches</h2>
+{% if switch_list %}
+    <ul>
+    {% for switch in switch_list %}
+        <li><a href="/inventory/{{ switch.id }}/">{{ switch.path }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No switches are available.</p>
+{% endif %}
+
+<h2>Cameras</h2>
+{% if camera_list %}
+    <ul>
+    {% for camera in camera_list %}
+        <li><a href="/inventory/{{ camera.id }}/">{{ camera.make }} {{ camera.model }} {{ camera.ip_address }}</a></li>
+    {% endfor %}
+    </ul>
+{% else %}
+    <p>No cameras are available.</p>
+{% endif %}
