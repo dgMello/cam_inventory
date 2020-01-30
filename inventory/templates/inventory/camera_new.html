@@ -5,19 +5,28 @@
 <form action="{% url 'camera_new' %}" method="post">
     {% csrf_token %}
     Make:<br>
-    <input type="text" name="make"><br>
+    <input type="text" name="make" required><br>
+    <br>
     Model:<br>
-    <input type="text" name="model"><br>
+    <input type="text" name="model" required><br>
+    <br>
     Firmware version:<br>
-    <input type=text" name="firmware_version"><br>
+    <input type=text" name="firmware" required><br>
+    <br>
     Switch:<br>
-    <select name="switches">
+    <select name="switch">
+        <option value="{{ switch.path }}" required>{{ switch.path }}</option>
         {% for switch in switch_list %}
-            <option value="{{ switch.path }}">{{ switch.path }}</option>
+            <option value="{{ switch.path }}" required>{{ switch.path }}</option>
         {% endfor %}
     </select>
     <br>
+    <br>
     IP address:<br>
-    <input type="text" name="ip_address"><br>
-
+    <input type="text" name="ip_address" required><br>
+    <br>
+    Server IP (Optional):
+    <input type="text" name="server"><br>
+    <br>
+    <input type="submit" value="create">
 </form>
