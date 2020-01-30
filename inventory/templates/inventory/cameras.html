@@ -1,10 +1,31 @@
 <h2>Cameras</h2>
-{% if camera_list %}
-    <ul>
+<table style="width:100%">
+    <tr>
+      <th>Make</th>
+      <th>Model</th>
+      <th>IP Address</th>
+      <th>Switch</th>
+      <th>Server</th>
+    </tr>
+    {% if camera_list %}
     {% for camera in camera_list %}
-        <li>{{ camera.make }} {{ camera.model }} {{ camera.ip_address }} <a href="/inventory/cameras/{{ camera.id }}/">Details</a></li>
+        <tr>
+            <td>{{ camera.make }}</td>
+            <td>{{ camera.model }}</td>
+            <td>{{ camera.ip_address }}</td>
+            <td>{{ camera.switch }}</td>
+            <td>{{ camera.server }}</td>
+            <td>{{ camera.switch }}</td>
+            <td><a href="/inventory/cameras/{{ camera.id }}/">Details</a></td>
+        </tr>
     {% endfor %}
-    </ul>
-{% else %}
-    <p>No cameras are available.</p>
-{% endif %}
+    {% else %}
+        <tr>
+            <td>None</td>
+            <td>None</td>
+            <td>None</td>
+            <td>None</td>
+            <td>None</td>
+         </tr>
+    {% endif %}
+</table>
