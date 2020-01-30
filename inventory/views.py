@@ -1,4 +1,7 @@
+from django.http import HttpResponse, HttpResponseRedirect
 from django.shortcuts import get_object_or_404, render
+from django.urls import reverse
+from django.db import IntegrityError
 
 from .models import Server, Switch, Camera
 
@@ -29,11 +32,13 @@ def camera_detail(request, camera_id):
 
 
 def camera_new(request):
+    switch_list = Switch.objects.all()
+    server_list = Server.objects.all()
+    context = {
+        'switch_list': switch_list,
+        'server_list': server_list
+    }
     if request.method == 'GET':
-        switch_list = Switch.objects.all()
-        context = {
-            'switch_list': switch_list,
-        }
         return render(request, 'inventory/camera_new.html', context)
     elif request.method == 'POST':
         selected_ip = request.POST['ip_address']
@@ -44,13 +49,19 @@ def camera_new(request):
         selected_server = request.POST['server']
         selected_switch = Switch.objects.get(path=selected_switch)
 
-        if selected_server is "":
+        if selected_server == "":
             new_camera = Camera.objects.create(switch=selected_switch, make=selected_make,  model=selected_model,
                                                firmware=selected_firmware, ip_address=selected_ip)
         else:
             new_camera = Camera.objects.create(switch=selected_switch, server=selected_server, make=selected_make,
                                                model=selected_model, firmware=selected_firmware, ip_address=selected_ip)
-        new_camera.save()
+        try:
+            new_camera.save()
+        except:
+            context['error_message'] = "You didn't select a choice."
+            return render(request, 'inventory/camera_new.html', context)
+        else:
+            return HttpResponseRedirect(reverse('cameras'))
 
 
 def servers(request):
