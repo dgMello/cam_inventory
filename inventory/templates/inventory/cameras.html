@@ -1,11 +1,18 @@
+{% load static %}
+<head>
+    <link rel="stylesheet" type="text/css" href="{% static 'inventory/style.css' %}">
+</head>
+
+
 <h2>Cameras</h2>
 <table style="width:100%">
     <tr>
-      <th>Make</th>
-      <th>Model</th>
-      <th>IP Address</th>
-      <th>Switch</th>
-      <th>Server</th>
+        <th>Make</th>
+        <th>Model</th>
+        <th>IP Address</th>
+        <th>Switch</th>
+        <th>Server</th>
+        <th>Link</th>
     </tr>
     {% if camera_list %}
     {% for camera in camera_list %}
@@ -13,9 +20,8 @@
             <td>{{ camera.make }}</td>
             <td>{{ camera.model }}</td>
             <td>{{ camera.ip_address }}</td>
-            <td>{{ camera.switch }}</td>
-            <td>{{ camera.server }}</td>
-            <td>{{ camera.switch }}</td>
+            <td>{{ camera.switch.path }}</td>
+            <td>{{ camera.server.ip_address }}</td>
             <td><a href="/inventory/cameras/{{ camera.id }}/">Details</a></td>
         </tr>
     {% endfor %}
