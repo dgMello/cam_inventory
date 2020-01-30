@@ -29,6 +29,16 @@ def camera_detail(request, camera_id):
     return render(request, 'inventory/camera_detail.html', {'camera': camera})
 
 
+def camera_new(request):
+    switch_list = Switch.objects.all()
+    context = {
+        'switch_list': switch_list,
+    }
+    try:
+
+    return render(request, 'inventory/camera_new.html', context)
+
+
 def servers(request):
     server_list = Server.objects.all()
     context = {

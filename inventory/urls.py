@@ -19,4 +19,6 @@ urlpatterns = [
     path('switches/<int:switch_id>/', views.switch_detail, name='switch_detail'),
     # ex: /inventory/create/
     path('create/', views.new_device, name='new_device'),
+    # ex: /inventory/cameras/new
+    path('cameras/new', views.camera_new, name='camera_new'),
 ]

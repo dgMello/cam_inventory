@@ -1,0 +1,23 @@
+<h1>Create new camera</h1>
+
+{% if error_message %}<p><strong>{{ error_message }}</strong></p>{% endif %}
+
+<form action="{% url 'camera_new' %}" method="post">
+    {% csrf_token %}
+    Make:<br>
+    <input type="text" name="make"><br>
+    Model:<br>
+    <input type="text" name="model"><br>
+    Firmware version:<br>
+    <input type=text" name="firmware_version"><br>
+    Switch:<br>
+    <select name="switches">
+        {% for switch in switch_list %}
+            <option value="{{ switch.path }}">{{ switch.path }}</option>
+        {% endfor %}
+    </select>
+    <br>
+    IP address:<br>
+    <input type="text" name="ip_address"><br>
+
+</form>
