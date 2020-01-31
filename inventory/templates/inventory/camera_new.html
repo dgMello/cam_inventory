@@ -26,12 +26,12 @@
     <br>
     Server IP (Optional):
     <select name="server">
-        <option value="" required></option>
+        <option value=none required></option>
         {% for server in server_list %}
             <option value="{{ server.ip_address }}" required>{{ server.ip_address }}</option>
         {% endfor %}
     </select>
     <br>
     <br>
-    <input type="submit" value="create">
+    <input type="submit" value="Create">
 </form>

@@ -45,22 +45,21 @@ def camera_new(request):
         selected_make = request.POST['make']
         selected_model = request.POST['model']
         selected_firmware = request.POST['firmware']
-        selected_switch = request.POST['switch']
-        selected_server = request.POST['server']
-        selected_switch = Switch.objects.get(path=selected_switch)
+        selected_switch = Switch.objects.get(path=request.POST['switch'])
 
-        if selected_server == "":
-            new_camera = Camera.objects.create(switch=selected_switch, make=selected_make,  model=selected_model,
-                                               firmware=selected_firmware, ip_address=selected_ip)
+        if request.POST['server'] == "":
+            selected_server = None
         else:
+            selected_server = Server.objects.get(ip_address=request.POST['server'])
+
+        try:
             new_camera = Camera.objects.create(switch=selected_switch, server=selected_server, make=selected_make,
                                                model=selected_model, firmware=selected_firmware, ip_address=selected_ip)
-        try:
-            new_camera.save()
-        except:
+        except IntegrityError:
             context['error_message'] = "You didn't select a choice."
             return render(request, 'inventory/camera_new.html', context)
         else:
+            new_camera.save()
             return HttpResponseRedirect(reverse('cameras'))
 
 

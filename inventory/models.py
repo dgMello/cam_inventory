@@ -14,7 +14,7 @@ class Switch(models.Model):
 
 class Camera(models.Model):
     switch = models.ForeignKey(Switch, on_delete=models.SET('None'))
-    server = models.ForeignKey(Server, on_delete=models.SET('None'), null=True, blank=True)
+    server = models.ForeignKey(Server, on_delete=models.SET(None), null=True, blank=True)
     make = models.CharField(max_length=200)
     model = models.CharField(max_length=200)
     firmware = models.CharField(max_length=200)
