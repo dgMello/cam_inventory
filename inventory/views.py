@@ -47,7 +47,7 @@ def camera_new(request):
         selected_firmware = request.POST['firmware']
         selected_switch = Switch.objects.get(path=request.POST['switch'])
 
-        if request.POST['server'] == "":
+        if request.POST['server'] is None:
             selected_server = None
         else:
             selected_server = Server.objects.get(ip_address=request.POST['server'])

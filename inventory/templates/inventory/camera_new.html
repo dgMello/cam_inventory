@@ -26,9 +26,9 @@
     <br>
     Server IP (Optional):
     <select name="server">
-        <option value=none required></option>
+        <option value=None required>None</option>
         {% for server in server_list %}
-            <option value="{{ server.ip_address }}" required>{{ server.ip_address }}</option>
+            <option value="{{ server.ip_address }}">{{ server.ip_address }}</option>
         {% endfor %}
     </select>
     <br>
