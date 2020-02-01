@@ -14,9 +14,9 @@
     <input type="text" name="firmware" required><br>
     <br>
     Switch:<br>
-    <select name="switch">
+    <select name="switch" required>
         {% for switch in switch_list %}
-            <option value="{{ switch.path }}" required>{{ switch.path }}</option>
+            <option value="{{ switch.subnet }}">{{ switch.subnet }}</option>
         {% endfor %}
     </select>
     <br>
@@ -25,8 +25,8 @@
     <input type="text" name="ip_address" required><br>
     <br>
     Server IP (Optional):
-    <select name="server">
-        <option value=None required>None</option>
+    <select name="server" required>
+        <option value="none" selected>Unassigned</option>
         {% for server in server_list %}
             <option value="{{ server.ip_address }}">{{ server.ip_address }}</option>
         {% endfor %}
