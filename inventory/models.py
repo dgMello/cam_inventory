@@ -65,6 +65,7 @@ class Camera(models.Model):
         ('truvision', 'TruVision')
     ]
     default_plugin = models.CharField(choices=PLUGIN_CHOICES, default='Onvif', max_length=200)
+    h265_enabled = models.BooleanField()
     PTZ_CHOICES = [
         ('none', 'None'),
         ('m_ptz', 'Mechanical PTZ'),
