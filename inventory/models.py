@@ -41,15 +41,8 @@ class Camera(models.Model):
     ip_address = models.OneToOneField(IpAddress, on_delete=models.SET_NULL, null=True)
     mac_address = models.CharField(max_length=200)
     PLUGIN_CHOICES = [
-        ('arecont', 'Arecont'),
-        ('axis', 'Axis'),
-        ('dahua', 'Dahua'),
-        ('hikvision', 'Hikvision'),
+        ('native', 'Native'),
         ('onvif', 'Onvif'),
-        ('panasonic', 'Panasonic'),
-        ('samsung', 'Samsung'),
-        ('sony', 'Sony'),
-        ('truvision', 'TruVision')
     ]
     default_plugin = models.CharField(choices=PLUGIN_CHOICES, default='Onvif', max_length=200)
     h265_enabled = models.BooleanField()
@@ -58,7 +51,7 @@ class Camera(models.Model):
         ('m_ptz', 'Mechanical PTZ'),
         ('d_ptz', 'Digital PTZ')
     ]
-    ptz_caps = models.CharField(choices=PTZ_CHOICES, default='None', max_length=200)
+    ptz_caps = models.CharField('ptz capabilities', choices=PTZ_CHOICES, default='None', max_length=200)
 
     def __str__(self):
         return self.ip_address.ip_address
