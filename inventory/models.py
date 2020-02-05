@@ -34,7 +34,6 @@ class IpAddress(models.Model):
 
 
 class Camera(models.Model):
-    server = models.ForeignKey(Server, on_delete=models.SET_NULL, null=True, blank=True)
     make = models.ForeignKey(CameraManufacturer, on_delete=models.SET_NULL, null=True)
     model = models.CharField(max_length=200)
     firmware = models.CharField(max_length=200)
@@ -52,6 +51,8 @@ class Camera(models.Model):
         ('d_ptz', 'Digital PTZ')
     ]
     ptz_caps = models.CharField('ptz capabilities', choices=PTZ_CHOICES, default='None', max_length=200)
+    qualified = models.BooleanField(default=False)
+    server = models.ForeignKey(Server, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
         return self.ip_address.ip_address
