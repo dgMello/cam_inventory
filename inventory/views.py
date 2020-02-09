@@ -4,16 +4,16 @@ from django.urls import reverse
 from django.db import IntegrityError, DataError
 from django.views import generic
 
-from .models import Server, Switch, Camera
+from .models import Server, Subnet, Camera
 
 
 def index(request):
     server_list = Server.objects.all()
-    switch_list = Switch.objects.all()
+    subnet_list = Subnet.objects.all()
     camera_list = Camera.objects.all()
     context = {
         'server_list': server_list,
-        'switch_list': switch_list,
+        'switch_list': subnet_list,
         'camera_list': camera_list
     }
     return render(request, 'inventory/index.html', context)
@@ -30,7 +30,7 @@ class CameraDetailView(generic.DetailView):
 
 
 def camera_new(request):
-    switch_list = Switch.objects.all()
+    switch_list = Subnet.objects.all()
     server_list = Server.objects.all()
     context = {
         'switch_list': switch_list,
@@ -43,7 +43,7 @@ def camera_new(request):
         selected_make = request.POST['make']
         selected_model = request.POST['model']
         selected_firmware = request.POST['firmware']
-        selected_switch = Switch.objects.get(subnet=request.POST['switch'])
+        selected_switch = Subnet.objects.get(subnet=request.POST['switch'])
 
         if request.POST['server'] == 'none':
             selected_server = None
@@ -80,7 +80,7 @@ class SwitchesView(generic.ListView):
 
 
 class SwitchDetailView(generic.DetailView):
-    model = Switch
+    model = Subnet
     template_name = 'inventory/switch_detail.html'
 
 

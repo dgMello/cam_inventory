@@ -18,7 +18,7 @@ class Server(models.Model):
         return self.name
 
 
-class Switch(models.Model):
+class Subnet(models.Model):
     subnet = models.CharField(max_length=50, primary_key=True)
 
     def __str__(self):
@@ -26,7 +26,6 @@ class Switch(models.Model):
 
 
 class IpAddress(models.Model):
-    switch_subnet = models.ForeignKey(Switch, on_delete=models.CASCADE)
     ip_address = models.GenericIPAddressField(protocol='IPv4')
 
     def __str__(self):
@@ -38,6 +37,7 @@ class Camera(models.Model):
     model = models.CharField(max_length=200)
     firmware = models.CharField(max_length=200)
     ip_address = models.OneToOneField(IpAddress, on_delete=models.SET_NULL, null=True)
+    subnet = models.ForeignKey(Subnet, on_delete=models.SET_NULL, null=True)
     mac_address = models.CharField(max_length=200)
     PLUGIN_CHOICES = [
         ('native', 'Native'),
@@ -45,6 +45,7 @@ class Camera(models.Model):
     ]
     default_plugin = models.CharField(choices=PLUGIN_CHOICES, default='Onvif', max_length=200)
     h265_enabled = models.BooleanField()
+    four_k_resolution = models.BooleanField('4k resolution')
     PTZ_CHOICES = [
         ('none', 'None'),
         ('m_ptz', 'Mechanical PTZ'),
@@ -55,4 +56,5 @@ class Camera(models.Model):
     server = models.ForeignKey(Server, on_delete=models.SET_NULL, null=True, blank=True)
 
     def __str__(self):
-        return self.ip_address.ip_address
+        camera = self.make.manu_name + ' ' + self.model
+        return camera

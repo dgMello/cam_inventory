@@ -1,36 +1,53 @@
-{% load static %}
-<head>
-    <link rel="stylesheet" type="text/css" href="{% static 'inventory/style.css' %}">
-</head>
+<!DOCTYPE html>
+<html>
+    {% load static %}
+    <head>
+        <!-- Latest compiled and minified CSS -->
+        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
+        <!-- jQuery library -->
+        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+        <!-- Popper JS -->
+        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
+        <!-- Latest compiled JavaScript -->
+        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
+        <link rel="stylesheet" type="text/css" href="{% static 'inventory/style.css' %}">
+    </head>
 
-
-<h2>Cameras</h2>
-<table style="width:100%">
-    <tr>
-        <th>Make</th>
-        <th>Model</th>
-        <th>IP Address</th>
-        <th>Switch</th>
-        <th>Server</th>
-        <th>Link</th>
-    </tr>
-    {% if camera_list %}
-    {% for camera in camera_list %}
+    <body>
+    <h2>Cameras</h2>
+    <table style="width:100%">
         <tr>
-            <td>{{ camera.make }}</td>
-            <td>{{ camera.model }}</td>
-            <td>{{ camera.ip_address }}</td>
-            <td>{{ camera.server.ip_address }}</td>
-            <td><a href="/inventory/cameras/{{ camera.id }}/">Details</a></td>
+            <th>Make</th>
+            <th>Model</th>
+            <th>IP Address</th>
+            <th>Subnet</th>
+            <th>H.265 Enabled</th>
+            <th>4K Resolution</th>
+            <th>Server</th>
+            <th>Link</th>
         </tr>
-    {% endfor %}
-    {% else %}
-        <tr>
-            <td>None</td>
-            <td>None</td>
-            <td>None</td>
-            <td>None</td>
-            <td>None</td>
-         </tr>
-    {% endif %}
-</table>
+        {% if camera_list %}
+        {% for camera in camera_list %}
+            <tr>
+                <td>{{ camera.make }}</td>
+                <td>{{ camera.model }}</td>
+                <td>{{ camera.ip_address }}</td>
+                <td>{{ camera.subnet }}</td>
+                <td>{{ camera.h265_enabled }}</td>
+                <td>{{ camera.four_k_resolution }}</td>
+                <td>{{ camera.server }}</td>
+                <td><a href="/inventory/cameras/{{ camera.id }}/">Details</a></td>
+            </tr>
+        {% endfor %}
+        {% else %}
+            <tr>
+                <td>None</td>
+                <td>None</td>
+                <td>None</td>
+                <td>None</td>
+                <td>None</td>
+             </tr>
+            {% endif %}
+        </table>
+    </body>
+</html>
