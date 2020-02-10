@@ -21,5 +21,5 @@ urlpatterns = [
     # ex: /inventory/create/
     path('create/', views.new_device, name='new_device'),
     # ex: /inventory/cameras/new
-    path('cameras/new', views.camera_new, name='camera_new'),
+    path('cameras/new', views.CameraCreate.as_view(), name='camera-create'),
 ]
