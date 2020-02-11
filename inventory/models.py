@@ -35,9 +35,10 @@ class IpAddress(models.Model):
 class Camera(models.Model):
     make = models.ForeignKey(CameraManufacturer, on_delete=models.SET_NULL, null=True)
     model = models.CharField(max_length=200)
-    firmware = models.CharField(max_length=200)
     ip_address = models.OneToOneField(IpAddress, on_delete=models.SET_NULL, null=True)
     subnet = models.ForeignKey(Subnet, on_delete=models.SET_NULL, null=True)
+    un_pw = models.CharField('username/password', max_length=200)
+    firmware = models.CharField(max_length=200)
     mac_address = models.CharField(max_length=200)
     PLUGIN_CHOICES = [
         ('native', 'Native'),
@@ -54,6 +55,7 @@ class Camera(models.Model):
     ptz_caps = models.CharField('ptz capabilities', choices=PTZ_CHOICES, default='None', max_length=200)
     qualified = models.BooleanField(default=False)
     server = models.ForeignKey(Server, on_delete=models.SET_NULL, null=True, blank=True)
+    notes = models.CharField(max_length=200, blank=True)
 
     def __str__(self):
         camera = self.make.manu_name + ' ' + self.model

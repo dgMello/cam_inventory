@@ -80,6 +80,12 @@ DATABASES = {
         'NAME': 'cam_inventory',
         'USER': 'postgres',
         'PASSWORD': 'ricciotti'
+    },
+    'users': {
+        'ENGINE': 'django.db.backends.postgresql',
+        'NAME': 'user_data',
+        'USER': 'postgres',
+        'PASSWORD': 'ricciotti'
     }
 }
 
