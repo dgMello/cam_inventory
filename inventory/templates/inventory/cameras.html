@@ -1,46 +1,38 @@
-<!DOCTYPE html>
-<html>
-    {% load static %}
-    <head>
-        <!-- Latest compiled and minified CSS -->
-        <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css">
-        <!-- jQuery library -->
-        <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-        <!-- Popper JS -->
-        <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.16.0/umd/popper.min.js"></script>
-        <!-- Latest compiled JavaScript -->
-        <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.4.1/js/bootstrap.min.js"></script>
-    </head>
-    <body>
-        <div class="container-fluid pt-3">
-            <div class="row">
-                <div class="col">
-                    <h2>Cameras</h2>
-                </div>
-                <div class="col">
-                    <a href="/inventory/cameras/new" class="btn btn-info" role="button">Create New Camera</a>
-                </div>
-            </div>
+{% extends "base.html" %}
+
+{% block title %}Cameras{% endblock %}
+
+{% block content %}
+<div class="container-fluid pt-3">
+    <div class="row">
+        <div class="col">
+            <h2>Cameras</h2>
         </div>
-        <div class="container-fluid pt-3">
-            <input class="form-control" id="cameraInput" type="text" placeholder="Search..">
-            <br>
-            <table class="table table-hover table-bordered">
-                <thead>
+        <div class="col">
+            <a href="/inventory/cameras/new" class="btn btn-info" role="button">Create New Camera</a>
+        </div>
+    </div>
+</div>
+<div class="container-fluid pt-3">
+    <input class="form-control" id="cameraInput" type="text" placeholder="Search..">
+    <br>
+    <table id="cameraTable" class="table table-hover table-bordered">
+        <thead>
                     <tr>
                         <th>Link</th>
-                        <th>Make</th>
-                        <th>Model</th>
-                        <th>IP Address</th>
-                        <th>Subnet</th>
+                        <th onclick="sortTable(0)">Make</th>
+                        <th onclick="sortTable(1)">Model</th>
+                        <th onclick="sortTable(2)">IP Address</th>
+                        <th onclick="sortTable(3)">Subnet</th>
+                        <th onclick="sortTable(4)">Username/Password</th>
                         <th>H.265 Enabled</th>
                         <th>4K Resolution</th>
                         <th>PTZ Capabilities</th>
-                        <th>Server</th>
+                        <th onclick="sortTable(5)">Server</th>
                     </tr>
                 </thead>
                 {% if camera_list %}
-                <tbody id="cameraTable">
+                <tbody id="cameraTableBody">
                    {% for camera in camera_list %}
                        <tr>
                            <td><a href="/inventory/cameras/{{ camera.id }}/">Details</a></td>
@@ -48,6 +40,7 @@
                            <td>{{ camera.model }}</td>
                            <td>{{ camera.ip_address }}</td>
                            <td>{{ camera.subnet }}</td>
+                           <td>{{ camera.un_pw }}</td>
                            <td>{{ camera.h265_enabled }}</td>
                            <td>{{ camera.four_k_resolution }}</td>
                            <td>{{ camera.ptz_caps }}</td>
@@ -63,20 +56,14 @@
                         <td>None</td>
                         <td>None</td>
                         <td>None</td>
+                        <td>None</td>
+                        <td>None</td>
+                        <td>None</td>
+                        <td>None</td>
+                        <td>None</td>
                     </tr>
                     {% endif %}
                 </tbody>
             </table>
         </div>
-    <script>
-    $(document).ready(function(){
-      $("#cameraInput").on("keyup", function() {
-        var value = $(this).val().toLowerCase();
-        $("#cameraTable tr").filter(function() {
-          $(this).toggle($(this).text().toLowerCase().indexOf(value) > -1)
-         });
-      });
-    });
-    </script>
-    </body>
-</html>
+{% endblock %}

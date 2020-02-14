@@ -1,3 +1,16 @@
 table, th, td {
   border: 1px solid black;
 }
+
+table.cameraTable thead .sorting:after,
+table.cameraTable thead .sorting:before,
+table.cameraTable thead .sorting_asc:after,
+table.cameraTable thead .sorting_asc:before,
+table.cameraTable thead .sorting_asc_disabled:after,
+table.cameraTable thead .sorting_asc_disabled:before,
+table.cameraTable thead .sorting_desc:after,
+table.cameraTable thead .sorting_desc:before,
+table.cameraTable thead .sorting_desc_disabled:after,
+table.cameraTable thead .sorting_desc_disabled:before {
+bottom: .5em;
+}
