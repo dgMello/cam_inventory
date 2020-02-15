@@ -18,52 +18,50 @@
     <br>
     <table id="cameraTable" class="table table-hover table-bordered">
         <thead>
-                    <tr>
-                        <th>Link</th>
-                        <th onclick="sortTable(0)">Make</th>
-                        <th onclick="sortTable(1)">Model</th>
-                        <th onclick="sortTable(2)">IP Address</th>
-                        <th onclick="sortTable(3)">Subnet</th>
-                        <th onclick="sortTable(4)">Username/Password</th>
-                        <th>H.265 Enabled</th>
-                        <th>4K Resolution</th>
-                        <th>PTZ Capabilities</th>
-                        <th onclick="sortTable(5)">Server</th>
-                    </tr>
-                </thead>
-                {% if camera_list %}
-                <tbody id="cameraTableBody">
-                   {% for camera in camera_list %}
-                       <tr>
-                           <td><a href="/inventory/cameras/{{ camera.id }}/">Details</a></td>
-                           <td>{{ camera.make }}</td>
-                           <td>{{ camera.model }}</td>
-                           <td>{{ camera.ip_address }}</td>
-                           <td>{{ camera.subnet }}</td>
-                           <td>{{ camera.un_pw }}</td>
-                           <td>{{ camera.h265_enabled }}</td>
-                           <td>{{ camera.four_k_resolution }}</td>
-                           <td>{{ camera.ptz_caps }}</td>
-                           <td>{{ camera.server }}</td>
-                       </tr>
-                   {% endfor %}
-                </tbody>
-                {% else %}
-                <tbody>
-                    <tr>
-                        <td>None</td>
-                        <td>None</td>
-                        <td>None</td>
-                        <td>None</td>
-                        <td>None</td>
-                        <td>None</td>
-                        <td>None</td>
-                        <td>None</td>
-                        <td>None</td>
-                        <td>None</td>
-                    </tr>
-                    {% endif %}
-                </tbody>
-            </table>
-        </div>
+            <tr>
+                <th onclick="sortTable(0)">Make</th>
+                <th onclick="sortTable(1)">Model</th>
+                <th onclick="sortTable(2)">IP Address</th>
+                <th onclick="sortTable(3)">Subnet</th>
+                <th>Username/Password</th>
+                <th>H.265 Enabled</th>
+                <th>4K Resolution</th>
+                <th>PTZ Capabilities</th>
+                <th onclick="sortTable(5)">Server</th>
+            </tr>
+        </thead>
+        {% if camera_list %}
+        <tbody id="cameraTableBody">
+            {% for camera in camera_list %}
+                <tr>
+                    <td>{{ camera.make }}</td>
+                    <td><a href="/inventory/cameras/{{ camera.id }}/">{{ camera.model }}</a></td>
+                    <td>{{ camera.ip_address }}</td>
+                    <td>{{ camera.subnet }}</td>
+                    <td>{{ camera.un_pw }}</td>
+                    <td>{{ camera.h265_enabled }}</td>
+                    <td>{{ camera.four_k_resolution }}</td>
+                    <td>{{ camera.ptz_caps }}</td>
+                    <td>{{ camera.server }}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+        {% else %}
+        <tbody>
+            <tr>
+                <td>None</td>
+                <td>None</td>
+                <td>None</td>
+                <td>None</td>
+                <td>None</td>
+                <td>None</td>
+                <td>None</td>
+                <td>None</td>
+                <td>None</td>
+                <td>None</td>
+            </tr>
+            {% endif %}
+        </tbody>
+    </table>
+</div>
 {% endblock %}
