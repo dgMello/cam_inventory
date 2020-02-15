@@ -19,23 +19,25 @@
     <table id="cameraTable" class="table table-hover table-bordered">
         <thead>
             <tr>
-                <th onclick="sortTable(0)">Make</th>
-                <th onclick="sortTable(1)">Model</th>
-                <th onclick="sortTable(2)">IP Address</th>
-                <th onclick="sortTable(3)">Subnet</th>
+                <th></th>
+                <th onclick="sortTable(1)">Make</th>
+                <th onclick="sortTable(2)">Model</th>
+                <th onclick="sortTable(3)">IP Address</th>
+                <th onclick="sortTable(4)">Subnet</th>
                 <th>Username/Password</th>
                 <th>H.265 Enabled</th>
                 <th>4K Resolution</th>
                 <th>PTZ Capabilities</th>
-                <th onclick="sortTable(5)">Server</th>
+                <th onclick="sortTable(9)">Server</th>
             </tr>
         </thead>
         {% if camera_list %}
         <tbody id="cameraTableBody">
             {% for camera in camera_list %}
                 <tr>
+                    <td><a href="/inventory/cameras/{{ camera.id }}/">Link</a></td>
                     <td>{{ camera.make }}</td>
-                    <td><a href="/inventory/cameras/{{ camera.id }}/">{{ camera.model }}</a></td>
+                    <td>{{ camera.model }}</td>
                     <td>{{ camera.ip_address }}</td>
                     <td>{{ camera.subnet }}</td>
                     <td>{{ camera.un_pw }}</td>
