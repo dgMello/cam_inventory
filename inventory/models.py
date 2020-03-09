@@ -32,19 +32,32 @@ class IpAddress(models.Model):
         return self.ip_address
 
 
+class PatchPanel(models.Model):
+    patch_panel = models.CharField(max_length=10, primary_key=True)
+
+
+class PatchPanelConnection(models.Model):
+    connection = models.CharField(max_length=10)
+    patch_panel = models.ForeignKey(PatchPanel)
+
+
 class Camera(models.Model):
     make = models.ForeignKey(CameraManufacturer, on_delete=models.SET_NULL, null=True)
-    model = models.CharField(max_length=200)
+    model = models.CharField(max_length=50)
+    description = models.CharField(max_length=50)
     ip_address = models.OneToOneField(IpAddress, on_delete=models.SET_NULL, null=True)
     subnet = models.ForeignKey(Subnet, on_delete=models.SET_NULL, null=True)
-    un_pw = models.CharField('username/password', max_length=200)
-    firmware = models.CharField(max_length=200)
-    mac_address = models.CharField(max_length=200)
+    un_pw = models.CharField('username/password', max_length=20)
+    firmware = models.CharField(max_length=20)
+    mac_address = models.CharField(max_length=20)
+    # Assigned user placeholder
+    location = models.CharField(max_length=20)
+    patch_panel_connection = models.ForeignKey(PatchPanelConnection, on_delete=models.SET_NULL, null=True)
     PLUGIN_CHOICES = [
         ('native', 'Native'),
         ('onvif', 'Onvif'),
     ]
-    default_plugin = models.CharField(choices=PLUGIN_CHOICES, default='Onvif', max_length=200)
+    default_plugin = models.CharField(choices=PLUGIN_CHOICES, default='Onvif')
     h265_enabled = models.BooleanField()
     four_k_resolution = models.BooleanField('4k resolution')
     PTZ_CHOICES = [
@@ -52,7 +65,7 @@ class Camera(models.Model):
         ('m_ptz', 'Mechanical PTZ'),
         ('d_ptz', 'Digital PTZ')
     ]
-    ptz_caps = models.CharField('ptz capabilities', choices=PTZ_CHOICES, default='None', max_length=200)
+    ptz_caps = models.CharField('ptz capabilities', choices=PTZ_CHOICES, default='None')
     qualified = models.BooleanField(default=False)
     server = models.ForeignKey(Server, on_delete=models.SET_NULL, null=True, blank=True)
     notes = models.CharField(max_length=200, blank=True)

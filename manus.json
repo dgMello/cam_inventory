@@ -1,0 +1,86 @@
+[
+  {
+    "model": "inventory.cameramanufacturer",
+    "pk": 1,
+    "fields": {
+      "manu_name": "Axis"
+    }
+  },
+  {
+    "model": "inventory.cameramanufacturer",
+    "pk": 2,
+    "fields": {
+      "manu_name": "Avigilon"
+    }
+  },
+  {
+    "model": "inventory.cameramanufacturer",
+    "pk": 3,
+    "fields": {
+      "manu_name": "Bosch"
+    }
+  },
+  {
+    "model": "inventory.cameramanufacturer",
+    "pk": 4,
+    "fields": {
+      "manu_name": "Dahua"
+    }
+  },
+  {
+    "model": "inventory.cameramanufacturer",
+    "pk": 5,
+    "fields": {
+      "manu_name": "FMUSER"
+    }
+  },
+  {
+    "model": "inventory.cameramanufacturer",
+    "pk": 6,
+    "fields": {
+      "manu_name": "Hikvision"
+    }
+  },
+  {
+    "model": "inventory.cameramanufacturer",
+    "pk": 7,
+    "fields": {
+      "manu_name": "Interlogix TruVision"
+    }
+  },
+  {
+    "model": "inventory.cameramanufacturer",
+    "pk": 8,
+    "fields": {
+      "manu_name": "Panasonic"
+    }
+  },
+  {
+    "model": "inventory.cameramanufacturer",
+    "pk": 9,
+    "fields": {
+      "manu_name": "Samsung (Hanwha)"
+    }
+  },
+  {
+    "model": "inventory.cameramanufacturer",
+    "pk": 10,
+    "fields": {
+      "manu_name": "Sony"
+    }
+  },
+  {
+    "model": "inventory.cameramanufacturer",
+    "pk": 11,
+    "fields": {
+      "manu_name": "Uniview"
+    }
+  },
+  {
+    "model": "inventory.cameramanufacturer",
+    "pk": 12,
+    "fields": {
+      "manu_name": "Vivotek"
+    }
+  }
+]
