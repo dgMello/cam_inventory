@@ -33,12 +33,18 @@ class IpAddress(models.Model):
 
 
 class PatchPanel(models.Model):
-    patch_panel = models.CharField(max_length=10, primary_key=True)
+    name = models.CharField(max_length=10, primary_key=True)
+
+    def __str__(self):
+        return self.patch_panel
 
 
 class PatchPanelConnection(models.Model):
     connection = models.CharField(max_length=10)
-    patch_panel = models.ForeignKey(PatchPanel)
+    patch_panel = models.ForeignKey(PatchPanel, on_delete=models.SET_NULL, null=True)
+
+    def __str__(self):
+        return self.patch_panel.name + "-" + self.connection
 
 
 class Camera(models.Model):
@@ -71,5 +77,6 @@ class Camera(models.Model):
     notes = models.CharField(max_length=200, blank=True)
 
     def __str__(self):
-        camera = self.make.manu_name + ' ' + self.model
+        make = self.make
+        camera = make.manu_name + ' ' + self.model
         return camera

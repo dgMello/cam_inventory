@@ -1,0 +1,65 @@
+[
+  {
+    "model": "inventory.patchpanel",
+    "pk": 1,
+    "fields": {
+      "patch_panel": "PP1"
+    }
+  },
+  {
+    "model": "inventory.patchpanel",
+    "pk": 2,
+    "fields": {
+      "patch_panel": "PP2"
+    }
+  },
+  {
+    "model": "inventory.patchpanel",
+    "pk": 3,
+    "fields": {
+      "patch_panel": "PP3"
+    }
+  },
+  {
+    "model": "inventory.patchpanel",
+    "pk": 4,
+    "fields": {
+      "patch_panel": "PP4"
+    }
+  },
+  {
+    "model": "inventory.patchpanel",
+    "pk": 5,
+    "fields": {
+      "patch_panel": "PP5"
+    }
+  },
+  {
+    "model": "inventory.patchpanel",
+    "pk": 6,
+    "fields": {
+      "patch_panel": "PP6"
+    }
+  },
+  {
+    "model": "inventory.patchpanel",
+    "pk": 7,
+    "fields": {
+      "patch_panel": "PP7"
+    }
+  },
+  {
+    "model": "inventory.patchpanel",
+    "pk": 8,
+    "fields": {
+      "patch_panel": "PP8"
+    }
+  },
+  {
+    "model": "inventory.patchpanel",
+    "pk": 9,
+    "fields": {
+      "patch_panel": "PP9"
+    }
+  }
+]
