@@ -1,3 +1,6 @@
+{% extends "base.html" %}
+
+{% block content %}
 <h1>VMS QA Inventory</h1>
 <h2>Servers <a href="/inventory/servers/">See all</a></h2>
 {% if server_list %}
@@ -31,3 +34,5 @@
 {% else %}
     <p>No cameras are available.</p>
 {% endif %}
+
+{% endblock %}

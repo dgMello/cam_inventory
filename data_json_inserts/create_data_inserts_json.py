@@ -14,7 +14,7 @@ def create_ip_json():
         }
         ips.append(ip)
 
-    with open("ips.json", "w") as outfile:
+    with open("../ips.json", "w") as outfile:
         json.dump(ips, outfile)
 
 

@@ -36,7 +36,7 @@ class PatchPanel(models.Model):
     name = models.CharField(max_length=10, primary_key=True)
 
     def __str__(self):
-        return self.patch_panel
+        return self.name
 
 
 class PatchPanelConnection(models.Model):
@@ -63,7 +63,7 @@ class Camera(models.Model):
         ('native', 'Native'),
         ('onvif', 'Onvif'),
     ]
-    default_plugin = models.CharField(choices=PLUGIN_CHOICES, default='Onvif')
+    default_plugin = models.CharField(choices=PLUGIN_CHOICES, max_length=20, default='Onvif')
     h265_enabled = models.BooleanField()
     four_k_resolution = models.BooleanField('4k resolution')
     PTZ_CHOICES = [
@@ -71,7 +71,7 @@ class Camera(models.Model):
         ('m_ptz', 'Mechanical PTZ'),
         ('d_ptz', 'Digital PTZ')
     ]
-    ptz_caps = models.CharField('ptz capabilities', choices=PTZ_CHOICES, default='None')
+    ptz_caps = models.CharField('ptz capabilities', choices=PTZ_CHOICES, max_length=20, default='None')
     qualified = models.BooleanField(default=False)
     server = models.ForeignKey(Server, on_delete=models.SET_NULL, null=True, blank=True)
     notes = models.CharField(max_length=200, blank=True)
